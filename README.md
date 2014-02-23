@@ -2,7 +2,7 @@ MVC project to managed: Schools-Lecturer-Students staff. The project is using Lo
 
 Solution includes:
 
-- Possibility of Schools,Lecturer,Students data adding/removing
+- Possibility of Schools,Lecturer,Students adding/removing
 
 - Possibility of assign Lecturer to particular Student in Student -> Edit link
 

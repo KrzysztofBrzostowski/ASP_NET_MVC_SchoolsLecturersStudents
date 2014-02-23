@@ -1,0 +1,93 @@
+﻿@model SchoolsLecturersStudents.Models.School
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>School</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StreetName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StreetName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SchoolName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SchoolName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Score)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Score)
+        </dd>
+
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Student FirstName</th>
+                    <th>Student LastName</th>
+
+                </tr>
+                @foreach (var item in Model.Students)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Lecturer FirstName</th>
+                    <th>Lecturer LastName</th>
+
+                </tr>
+                @foreach (var item in Model.Engagements)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Lecturer.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Lecturer.LastName)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

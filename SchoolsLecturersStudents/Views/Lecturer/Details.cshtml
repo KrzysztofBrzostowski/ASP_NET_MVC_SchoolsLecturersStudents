@@ -1,0 +1,82 @@
+﻿@model SchoolsLecturersStudents.Models.Lecturer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Lecturer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Student FirstName</th>
+                    <th>Student LastName</th>
+
+                </tr>
+                @foreach (var item in Model.Enrollments)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Student.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Student.LastName)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>School's Name</th>
+                    <th>City </th>
+                    <th>Score</th>
+                </tr>
+                @foreach (var item in Model.Engagements)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.School.SchoolName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.School.City)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.School.Score)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
+
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

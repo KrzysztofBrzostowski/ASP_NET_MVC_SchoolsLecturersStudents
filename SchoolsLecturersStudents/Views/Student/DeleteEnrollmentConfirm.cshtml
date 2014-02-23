@@ -1,0 +1,44 @@
+﻿@model SchoolsLecturersStudents.Models.Enrollment
+
+@{
+    ViewBag.Title = "DeleteEnrollmentConfirm";
+}
+
+<h2>DeleteEnrollment</h2>
+
+<h3>Are you sure you want to delete Lecturer @Model.Lecturer.FirstName @Model.Lecturer.LastName from the assignment of @Model.Student.FirstName @Model.Student.LastName  </h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Lecturer.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lecturer.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lecturer.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lecturer.LastName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("DeleteEnrollment", "Student"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.EnrollmentID)
+
+        @Html.HiddenFor(model => model.StudentID)
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" />
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

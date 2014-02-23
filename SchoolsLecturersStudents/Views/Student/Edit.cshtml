@@ -1,0 +1,126 @@
+﻿@model SchoolsLecturersStudents.Models.Student
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@*
+    Po stronie przeglądarki dysponujemy
+    ID jako pole formularza.
+    Nie mozna uzyc ID z modelu,bo
+    na stronie HTML nie ma modelu
+*@
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Student</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastName)
+                @Html.ValidationMessageFor(model => model.LastName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstName)
+                @Html.ValidationMessageFor(model => model.FirstName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="SchoolID">School</label>
+            <div class="col-md-10">
+                @Html.DropDownList("SchoolID", ViewData["User_School_Type"] as IEnumerable<SelectListItem>)
+                @Html.ValidationMessageFor(model => model.School.SchoolName)
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+
+        </div>
+
+        @*@Html.DropDownList("ID",  ViewData["User_Lecturers"] as IEnumerable<SelectListItem>)*@
+
+
+
+
+        <h4><br />Lecturer in Enrollments</h4>
+
+
+        <table class="table">
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+            </tr>
+
+            @foreach (var item in Model.Enrollments)
+            {
+                <tr>
+                    <td>@item.Lecturer.FirstName</td>
+                    <td>@item.Lecturer.LastName</td>
+                    <td>@Html.ActionLink("Delete", "DeleteEnrollmentConfirm", new { id = item.EnrollmentID })</td>
+                </tr>
+            }
+        </table>
+
+        @if (ViewBag.Lectures2.Count > 0)
+        {
+
+            <select id="v1">
+
+                @foreach (var item in ViewBag.Lectures2)
+                {
+                    <option value="@item.ID">@item.FirstName @item.LastName</option>
+                }
+            </select>
+            <input type="button" id="b1" value="Add this Lecturer" class="btn btn-default" />
+
+        }
+
+
+
+    </div>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+
+            $(b1).click(function () {
+                //alert($("#ID").val());
+                //alert($("#v1").val());
+                $.post('../AddLectureToStudent', 'lectureID=' + $("#v1").val() + '&studentID=' + $("#ID").val(),
+                    function () {
+                        location.reload();
+                    });
+
+            })
+        });
+
+    </script>
+
+}

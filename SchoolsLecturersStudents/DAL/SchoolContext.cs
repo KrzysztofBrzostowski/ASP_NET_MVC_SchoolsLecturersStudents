@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
+using SchoolsLecturersStudents.Models;
+using System.Data.Entity.ModelConfiguration.Conventions;
+
+namespace SchoolsLecturersStudents.DAL
+{
+    public class SchoolContext : DbContext
+    {
+        public SchoolContext()
+            : base("SchoolContext")
+        {
+        }
+
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Enrollment> Enrollments { get; set; }
+        //public DbSet<Course> Courses { get; set; }
+
+        public DbSet<School> Schools { get; set; }
+        public DbSet<Lecturer> Lecturers { get; set; }
+        public DbSet<Engagement> Engagements { get; set; }
+
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        }
+    }
+}

@@ -6,7 +6,6 @@
 
 <h2>Edit</h2>
 
-
 @*
     Po stronie przeglądarki dysponujemy
     ID jako pole formularza.
@@ -49,20 +48,14 @@
         </div>
 
         <div class="form-group">
-
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
-
         </div>
 
         @*@Html.DropDownList("ID",  ViewData["User_Lecturers"] as IEnumerable<SelectListItem>)*@
-
-
-
-
+        
         <h4><br />Lecturer in Enrollments</h4>
-
 
         <table class="table">
             <tr>
@@ -82,19 +75,15 @@
 
         @if (ViewBag.Lectures2.Count > 0)
         {
-
             <select id="v1">
-
                 @foreach (var item in ViewBag.Lectures2)
                 {
                     <option value="@item.ID">@item.FirstName @item.LastName</option>
                 }
             </select>
+            
             <input type="button" id="b1" value="Add this Lecturer" class="btn btn-default" />
-
         }
-
-
 
     </div>
 
@@ -114,10 +103,11 @@
                 //alert($("#ID").val());
                 //alert($("#v1").val());
                 $.post('../AddLectureToStudent', 'lectureID=' + $("#v1").val() + '&studentID=' + $("#ID").val(),
-                    function () {
-                        location.reload();
+                    function (ret) {
+                        //alert(ret);
+                        //location odwoluje sie do aktulanego adresu URL
+                        location.reload(true);
                     });
-
             })
         });
 

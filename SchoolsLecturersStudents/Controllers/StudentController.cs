@@ -58,10 +58,6 @@ namespace SchoolsLecturersStudents.Controllers
         [HttpPost]
         public ActionResult Create([Bind(Include = "ID, LastName, FirstName, SchoolID")]Student student)
         {
-
-
-
-
             try
             {
                 if (ModelState.IsValid)
@@ -77,7 +73,6 @@ namespace SchoolsLecturersStudents.Controllers
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
             return View(student);
-
         }
 
         //
@@ -131,7 +126,6 @@ namespace SchoolsLecturersStudents.Controllers
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
             return View(student);
-
         }
 
 

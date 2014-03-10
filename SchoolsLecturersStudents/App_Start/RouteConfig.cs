@@ -31,9 +31,6 @@ namespace SchoolsLecturersStudents
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Lecturer", action = "Index", id = UrlParameter.Optional }
             );
-
-
-
         }
     }
 }

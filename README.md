@@ -1,4 +1,4 @@
-MVC project to managed: Schools-Lecturer-Students staff. The project is using LocalDB database type in VS 2013.
+MVC project managing Schools-Lecturer-Students staff. The project is using LocalDB database type in VS 2013.
 
 Solution includes:
 
